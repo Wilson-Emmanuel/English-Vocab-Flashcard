@@ -29,7 +29,7 @@
       <h2 class="font-semibold text-xl">English Vocabulary FlashCard for Kids</h2>
     </div>
     <div class="flex flex-col sm:flex-row items-center gap-4">
-      <div id="word-count-selector" class="place-items-center">
+      <div id="word-count-selector" class="place-items-center flex flex-col gap-2">
         <select id="word-group" class="w-64 h-10 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           <option value="1">1 Letter Word</option>
           <option value="2">2 Letter Words</option>
@@ -42,6 +42,8 @@
           <option value="9">9 Letter Words</option>
           <option value="10">10 Letter Words</option>
         </select>
+        <select id="voice" class="w-64 h-10 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </select>
       </div>
       <div id="flashcard-display">
         <div id="flashcard" class="w-64 mb-4 flex flex-col justify-center h-40 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm">
@@ -49,14 +51,19 @@
 <!--          <div id="flashcard-definition" class="text-center text-lg">Definition</div>-->
         </div>
         <div id="flashcard-buttons" class="flex flex-row justify-center gap-4">
-          <button id="prev-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">Prev</button>
-          <button id="next-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">Next</button>
-          <button id="speak-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">Speak</button>
+          <button id="prev-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer flex flex-row items-center justify-center  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">
+            <img src="img/prev.png" class="h-4 w-4 mr-2"  alt="speaker icons"/> Prev
+          </button>
+          <button id="speak-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  flex flex-row items-center justify-center rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">
+            <img src="img/speaker.png" class="h-4 w-4 mr-2"  alt="speaker icons"/> Speak
+          </button>
+          <button id="next-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer flex flex-row items-center justify-center  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">
+            <img src="img/next.png" class="h-4 w-4 mr-2"  alt="speaker icons"/> Next
+          </button>
         </div>
       </div>
     </div>
   </div>
-  <script src="js/app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
@@ -68,6 +75,7 @@
         });
     }
   </script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>

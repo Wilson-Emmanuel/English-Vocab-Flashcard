@@ -16,6 +16,7 @@ const speakButton = document.getElementById('speak-button');
 const wordDisplay = document.getElementById('displayed-word');
 let currentWordIndex = 0;
 const wordGroupSelectElement = document.getElementById('word-group');
+const voiceSelectElement = document.getElementById('voice');
 let currentWordGroup = Number(wordGroupSelectElement.value);
 
 const synth = window.speechSynthesis;
@@ -71,14 +72,21 @@ function speakWord(text) {
   // console.log(synth.getVoices().map(voice => voice.name));
   const utterThis = new SpeechSynthesisUtterance(text);
   utterThis.addEventListener("error", () => {
-    alert("Error speaking. Please try again.");
+    console.log("Error speaking. Please try again.");
   });
-  utterThis.rate = 0.9; // Adjust speed (slower for kids)
+  utterThis.rate = 0.8; // Adjust speed (slower for kids)
   utterThis.pitch = 1; // Adjust pitch (higher for kids)
   utterThis.lang = "en-US";
 
   if (!selectedVoice){
-    selectedVoice = synth.getVoices().find(voice => voice.name === "Google US English");
+    const voices = synth.getVoices();
+    selectedVoice = voices.find(voice => voice.name === "Google US English");
+    voices.forEach(voice => {
+      const option = document.createElement('option');
+      option.value = voice.name;
+      option.textContent = voice.name;
+      voiceSelectElement.appendChild(option);
+    });
   }
   utterThis.voice = selectedVoice;
   // utterThis.lang = "en-ZA" // Use South African English pronunciation
@@ -111,6 +119,30 @@ nextButton.addEventListener('click', () => {
 speakButton.addEventListener('click', () => {
   if (wordDisplay.innerText) {
     speakWord(wordDisplay.innerText);
+  }
+});
+
+voiceSelectElement.addEventListener('change', (event) => {
+  selectedVoice = synth.getVoices().find(voice => voice.name === event.target.value);
+});
+
+// key mapping
+// enter->speak, left->prev, right->next
+document.addEventListener('keydown', (event) => {
+  switch (event.key) {
+    case "ArrowLeft":
+      prevButton.click();
+     // speakButton.click();
+      break;
+    case "ArrowRight":
+      nextButton.click();
+    //  speakButton.click();
+      break;
+    case "Enter":
+      speakButton.click();
+      break;
+    default:
+      break;
   }
 });
 
