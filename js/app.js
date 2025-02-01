@@ -19,6 +19,7 @@ const wordGroupSelectElement = document.getElementById('word-group');
 let currentWordGroup = Number(wordGroupSelectElement.value);
 
 const synth = window.speechSynthesis;
+let selectedVoice
 
 document.addEventListener('DOMContentLoaded', () => {
   displayWord();
@@ -75,7 +76,11 @@ function speakWord(text) {
   utterThis.rate = 0.9; // Adjust speed (slower for kids)
   utterThis.pitch = 1; // Adjust pitch (higher for kids)
   utterThis.lang = "en-US";
-  utterThis.voice = synth.getVoices().find(voice => voice.name === "Google US English");
+
+  if (!selectedVoice){
+    selectedVoice = synth.getVoices().find(voice => voice.name === "Google US English");
+  }
+  utterThis.voice = selectedVoice;
   // utterThis.lang = "en-ZA" // Use South African English pronunciation
   // utterThis.lang = "en-GB"; // Use British English pronunciation
   synth.speak(utterThis);
