@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English Vocabulary Flashcard for Kids</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-100 w-full place-items-center pt-8">
+  <div class="flex flex-col gap-8 items-center w-2xl bg-slate-300 rounded-lg p-4">
+    <div class="place-items-center">
+      <h2 class="font-semibold text-xl">English Vocabulary FlashCard for Kids</h2>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center gap-4">
+      <div id="word-count-selector" class="place-items-center">
+        <select id="word-group" class="w-64 h-10 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <option value="1">1 Letter Word</option>
+          <option value="2">2 Letter Words</option>
+          <option value="3">3 Letter Words</option>
+          <option value="4">4 Letter Words</option>
+          <option value="5">5 Letter Words</option>
+          <option value="6">6 Letter Words</option>
+          <option value="7">7 Letter Words</option>
+          <option value="8">8 Letter Words</option>
+          <option value="9">9 Letter Words</option>
+          <option value="10">10 Letter Words</option>
+        </select>
+      </div>
+      <div id="flashcard-display">
+        <div id="flashcard" class="w-64 mb-4 flex flex-col justify-center h-40 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm">
+          <div id="flashcard-word" class="text-4xl text-center font-bold"><span id="displayed-word">Word</span></div>
+<!--          <div id="flashcard-definition" class="text-center text-lg">Definition</div>-->
+        </div>
+        <div id="flashcard-buttons" class="flex flex-row justify-center gap-4">
+          <button id="prev-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">Prev</button>
+          <button id="next-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">Next</button>
+          <button id="speak-button" class="w-20 text-white font-bold h-10 bg-blue-400 cursor-pointer  rounded-md hover:bg-blue-300 shadow-sm sm:text-sm">Speak</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
+</body>
+
+</html>
