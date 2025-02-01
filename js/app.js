@@ -22,7 +22,7 @@ let currentWordGroup = Number(wordGroupSelectElement.value);
 const synth = window.speechSynthesis;
 let selectedVoice
 
-const priorityVoices = ["Google US English", "Google UK English Male", "Karmit", "Tessa", "Samantha", "Moira", "Daniel", "Karen", "Melina", "Anna"];
+const priorityVoices = ["Google US English", "Google UK English Male", "Karmit", "Samantha", "Daniel", "Tessa", "Karen", "Melina"];
 
 function getVoices() {
   return new Promise(
