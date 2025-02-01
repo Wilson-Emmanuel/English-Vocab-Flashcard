@@ -22,8 +22,43 @@ let currentWordGroup = Number(wordGroupSelectElement.value);
 const synth = window.speechSynthesis;
 let selectedVoice
 
+const priorityVoices = ["Google US English", "Google UK English Male", "Karmit", "Tessa", "Samantha", "Moira", "Daniel", "Karen", "Melina", "Anna"];
+
+function getVoices() {
+  return new Promise(
+    function (resolve, reject) {
+      let synth = window.speechSynthesis;
+      let id;
+      id = setInterval(() => {
+        if (synth.getVoices().length !== 0) {
+          resolve(synth.getVoices());
+          clearInterval(id);
+        }
+      }, 100);
+    }
+  )
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   displayWord();
+  getVoices().then((voices) => {
+    voiceSelectElement.innerHTML = '';
+    voices
+      .filter(voice => priorityVoices.includes(voice.name))
+      .forEach(voice => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.textContent = voice.name;
+        voiceSelectElement.appendChild(option);
+    });
+    const priorityVoiceName = priorityVoices.find(priorityVoice => voices.some(voice => voice.name === priorityVoice));
+    selectedVoice = voices.find(voice => voice.name === priorityVoiceName);
+    if(selectedVoice) {
+      voiceSelectElement.value = selectedVoice.name;
+    }
+    console.log(selectedVoice.name);
+  });
 });
 
 function displayWord() {
@@ -76,21 +111,12 @@ function speakWord(text) {
   });
   utterThis.rate = 0.8; // Adjust speed (slower for kids)
   utterThis.pitch = 1; // Adjust pitch (higher for kids)
-  utterThis.lang = "en-US";
-
-  if (!selectedVoice){
-    const voices = synth.getVoices();
-    selectedVoice = voices.find(voice => voice.name === "Google US English");
-    voices.forEach(voice => {
-      const option = document.createElement('option');
-      option.value = voice.name;
-      option.textContent = voice.name;
-      voiceSelectElement.appendChild(option);
-    });
-  }
-  utterThis.voice = selectedVoice;
   // utterThis.lang = "en-ZA" // Use South African English pronunciation
   // utterThis.lang = "en-GB"; // Use British English pronunciation
+  utterThis.lang = "en-US"; // Use American English pronunciation
+  if (selectedVoice) {
+    utterThis.voice = selectedVoice;
+  }
   synth.speak(utterThis);
 }
 
@@ -123,7 +149,9 @@ speakButton.addEventListener('click', () => {
 });
 
 voiceSelectElement.addEventListener('change', (event) => {
-  selectedVoice = synth.getVoices().find(voice => voice.name === event.target.value);
+  getVoices().then((voices) => {
+    selectedVoice = voices.find(voice => voice.name === event.target.value);
+  });
 });
 
 // key mapping
