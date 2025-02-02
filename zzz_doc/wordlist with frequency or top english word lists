@@ -1,0 +1,22 @@
+To get **English words sorted by usage frequency**, you can use **word frequency datasets**. These datasets provide words ranked by how often they appear in spoken and written language.
+
+---
+
+## **1. Best Sources for Word Frequency Data**
+| **Dataset** | **Description** | **Usage Count?** | **Source** |
+|------------|---------------|----------------|------------|
+| **Corpus of Contemporary American English (COCA)** | 1 billion+ words from books, news, and spoken language | ✅ Yes | [corpus.byu.edu/coca](https://www.corpus.byu.edu/coca/) |
+| **British National Corpus (BNC)** | 100 million words, British English focus | ✅ Yes | [BNC](http://www.natcorp.ox.ac.uk/) |
+| **SUBTLEX-US & SUBTLEX-UK** | Based on movie subtitles, real spoken English words | ✅ Yes | [PsyToolkit](https://www.psytoolkit.org/lexicalresources/) |
+| **Google Books Ngrams** | Word frequencies from books published over centuries | ✅ Yes | [Google Ngrams](https://books.google.com/ngrams) |
+| **Oxford 3000 & 5000** | Most important English words for learners | ✅ Yes | [Oxford 3000](https://www.oxfordlearnersdictionaries.com/) |
+
+---
+
+## **2. How to Get Words with Usage Counts**
+I can generate a **list of the most commonly used words in English** with their frequency counts. Would you like:
+1. **Top 1,000 - 10,000 most common words?**
+2. **Words grouped by letter count (for your flashcards)?**
+3. **Usage based on British or American English?**
+
+Let me know your preference, and I’ll generate a **JSON or TXT file** for you! 🚀
